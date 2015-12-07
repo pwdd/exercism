@@ -1,23 +1,15 @@
 class Raindrops
-  VERSION = 1
+  VERSION = 2
 
   def self.convert(integer)
     mapping = {
-       3 => 'Pling',
-       5 => 'Plang',
-       7 => 'Plong',
-      15 => 'PlingPlang',
-      21 => 'PlingPlong',
-      35 => 'PlangPlong',
-     105 => 'PlingPlangPlong' 
+      3 => 'Pling',
+      5 => 'Plang',
+      7 => 'Plong'
     }
 
-    key = get_key(integer, mapping)
-
-    key ? "#{mapping[key]}" : integer.to_s
-  end
-
-  def self.get_key(integer, hash)
-    hash.keys.select{ |key| integer  % key == 0 }.max
+    result = ''
+    mapping.each { |key, value| result << value if integer % key == 0 }
+    result.size > 0 ? result : integer.to_s
   end
 end
